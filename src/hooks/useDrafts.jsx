@@ -3,7 +3,7 @@ import axios from "axios"
 
 
 const fetchDrafts = () => {
-  return axios.get(`https://my-blog-api.onrender.com/api/draft`)
+  return axios.get(`https://my-blog-api-9nne.onrender.com/api/draft`)
 }
 
 const useDrafts = (onSuccess, onError) => {

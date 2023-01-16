@@ -3,7 +3,7 @@ import axios from "axios"
 
 
 const fetchPost = () => {
-  return axios.get(`http://localhost:8000/api`)
+  return axios.get(`https://my-blog-api-9nne.onrender.com/api`)
 }
 
 const usePosts = (onSuccess, onError) => {

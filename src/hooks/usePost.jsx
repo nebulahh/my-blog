@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const fetchPost = ({ queryKey }) => {
   const id = queryKey[1];
-  return axios.get(`https://my-blog-api.onrender.com/api/posts/${id}`);
+  return axios.get(`https://my-blog-api-9nne.onrender.com/api/posts/${id}`);
 };
 
 const usePost = (id) => {

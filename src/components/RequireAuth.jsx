@@ -6,7 +6,6 @@ import Layout from './Layout';
 const RequireAuth = () => {
   const { auth } = useAuth();
   const location = useLocation();
-  console.log(auth);
 
   return auth?.email ? (
     <Outlet />
