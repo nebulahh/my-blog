@@ -1,29 +1,29 @@
-import usePosts from '../../hooks/usePosts';
-import { Link } from 'react-router-dom';
+import usePosts from '../../hooks/usePosts'
+import { Link } from 'react-router-dom'
 
 const FetchPostQuery = () => {
   const onSuccess = () => {
-    console.log('Data retrieved');
-  };
+    console.log('Data retrieved')
+  }
 
   const onError = () => {
-    console.log('Error');
-  };
-  const { isLoading, data, isError, error } = usePosts(onSuccess, onError);
+    console.log('Error')
+  }
+  const { isLoading, data, isError, error } = usePosts(onSuccess, onError)
 
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <h2>Loading...</h2>
   }
 
   if (isError) {
-    return <h2>{error.message}</h2>;
+    return <h2>{error.message}</h2>
   }
 
   return (
     <>
       <div className="jumbotron p-3 p-md-5 text-white rounded bg-dark">
         <div className="col-md-6 px-0">
-          <h1 className="display-4 font-italic">Welcome to my blog.</h1>
+          <h1 className="display-4 font-italic">Welcome to the blog.</h1>
         </div>
       </div>
       <p className="border-bottom">List of posts</p>
@@ -39,10 +39,10 @@ const FetchPostQuery = () => {
             </p>
             <p>{post.text.slice(0, 118)}...</p>
           </div>
-        );
+        )
       })}
     </>
-  );
-};
+  )
+}
 
-export default FetchPostQuery;
+export default FetchPostQuery
