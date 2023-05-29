@@ -19,7 +19,7 @@ const SinglePostPage = () => {
   const { id } = useParams()
   const { isLoading, isError, data, error } = usePost(id)
 
-  console.log(data)
+  console.log('AUTH', auth)
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {

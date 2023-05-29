@@ -21,7 +21,7 @@ const Header = () => {
           </nav>
         </div>
         <div className="col-4 d-flex justify-content-end align-items-center">
-          {auth ? (
+          {auth.email ? (
             <nav>
               <NavLink className="mr-4" to={'/signup'}>
                 Register
