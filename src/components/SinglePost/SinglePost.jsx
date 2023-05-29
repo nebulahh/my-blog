@@ -15,7 +15,6 @@ const SinglePostPage = () => {
   const [comment, setComment] = useState('')
   const { auth } = useAuth()
   const navigate = useNavigate()
-  console.log('AUTH', auth)
 
   const { id } = useParams()
   const { isLoading, isError, data, error } = usePost(id)
