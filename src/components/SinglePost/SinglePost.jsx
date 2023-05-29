@@ -179,7 +179,7 @@ const SinglePostPage = () => {
               Add a new comment
             </h2>
 
-            <div className="w-full md:w-full px-3 mb-2 mt-2">
+            {/* <div className="w-full md:w-full px-3 mb-2 mt-2">
               <label htmlFor="username">Username:</label>
               <input
                 type="text"
@@ -189,7 +189,7 @@ const SinglePostPage = () => {
                 required
                 id="username"
               />
-            </div>
+            </div> */}
             <div className="w-full md:w-full px-3 mb-2 mt-2">
               <label htmlFor="text">Comment:</label>
               <textarea
