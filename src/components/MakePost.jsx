@@ -73,11 +73,6 @@ const MakePost = () => {
     }
   }
 
-  const signOut = async () => {
-    await logout()
-    navigate('/')
-  }
-
   return (
     <>
       <div className="flexGrow mb-3">
@@ -86,12 +81,6 @@ const MakePost = () => {
           className="mr-3 bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded-full"
         >
           Show Drafts
-        </NavLink>
-        <NavLink
-          onClick={signOut}
-          className="mr-3 bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded-full"
-        >
-          Sign Out
         </NavLink>
       </div>
 
