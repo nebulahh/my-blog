@@ -1,6 +1,5 @@
-import { useQuery } from "react-query"
-import axios from "axios"
-
+import { useQuery } from 'react-query'
+import axios from 'axios'
 
 const fetchDrafts = () => {
   return axios.get(`https://my-blog-api-9nne.onrender.com/api/draft`)
@@ -9,7 +8,7 @@ const fetchDrafts = () => {
 const useDrafts = (onSuccess, onError) => {
   return useQuery('drafts', fetchDrafts, {
     onSuccess,
-    onError
+    onError,
   })
 }
 

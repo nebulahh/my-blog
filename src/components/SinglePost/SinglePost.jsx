@@ -1,26 +1,28 @@
-import usePost from '../../hooks/usePost';
-import { useParams, useNavigate } from 'react-router-dom';
-import '../styles/App.min.css';
-import '../styles/App.css';
-import './SinglePost.css';
-import '../../index.css';
-import { useState } from 'react';
+import usePost from '../../hooks/usePost'
+import { useParams, useNavigate } from 'react-router-dom'
+import '../styles/App.min.css'
+import '../styles/App.css'
+import './SinglePost.css'
+import '../../index.css'
+import { useState } from 'react'
 
-import axios from '../../api/axios';
-import useAuth from '../../hooks/useAuth';
-const LOGIN_URL = '/user/login';
+import axios from '../../api/axios'
+import useAuth from '../../hooks/useAuth'
+const LOGIN_URL = '/user/login'
 
 const SinglePostPage = () => {
-  const [username, setUsername] = useState('');
-  const [comment, setComment] = useState('');
-  const { auth } = useAuth();
-  const navigate = useNavigate();
+  const [username, setUsername] = useState('')
+  const [comment, setComment] = useState('')
+  const { auth } = useAuth()
+  const navigate = useNavigate()
+  console.log('AUTH', auth)
 
-  const { id } = useParams();
-  const { isLoading, isError, data, error } = usePost(id);
+  const { id } = useParams()
+  const { isLoading, isError, data, error } = usePost(id)
 
+  console.log(data)
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       const response = await axios.post(
         `/posts/${id}/comments`,
@@ -29,13 +31,13 @@ const SinglePostPage = () => {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
-      );
-      setComment('');
-      setUsername('');
+      )
+      setComment('')
+      setUsername('')
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
   const deleteComment = async (commentId) => {
     try {
@@ -48,13 +50,13 @@ const SinglePostPage = () => {
           },
           withCredentials: true,
         }
-      );
-      setComment('');
-      setUsername('');
+      )
+      setComment('')
+      setUsername('')
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
   const deletePost = async (id) => {
     try {
@@ -64,19 +66,19 @@ const SinglePostPage = () => {
           Authorization: `Bearer ${auth.token}`,
         },
         withCredentials: true,
-      });
-      navigate('/');
+      })
+      navigate('/')
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <h2>Loading...</h2>
   }
 
   if (isError) {
-    return <h2>{error.message}</h2>;
+    return <h2>{error.message}</h2>
   }
 
   return (
@@ -89,7 +91,7 @@ const SinglePostPage = () => {
               {new Date(data?.data.createdAt).toDateString()}
             </span>
 
-            {auth?.email ? (
+            {auth?.email === data?.data.posted_by.email ? (
               <div
                 onClick={() => deletePost(data?.data?._id)}
                 className="w-4 cursor-pointer"
@@ -160,7 +162,7 @@ const SinglePostPage = () => {
                       ) : null}
                     </div>
                   </div>
-                );
+                )
               })
             )}
           </div>
@@ -212,7 +214,7 @@ const SinglePostPage = () => {
         </form>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default SinglePostPage;
+export default SinglePostPage

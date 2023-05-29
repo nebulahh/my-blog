@@ -1,34 +1,34 @@
-import { useRef, useState, useEffect } from 'react';
-import '../index.css';
-import useAuth from '../../hooks/useAuth';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useRef, useState, useEffect } from 'react'
+import '../index.css'
+import useAuth from '../../hooks/useAuth'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
-import axios from '../../api/axios';
-const LOGIN_URL = '/user/login';
+import axios from '../../api/axios'
+const LOGIN_URL = '/user/login'
 
 const Login = () => {
-  const { setAuth, auth } = useAuth();
-  const userRef = useRef();
-  const errRef = useRef();
+  const { setAuth, auth } = useAuth()
+  const userRef = useRef()
+  const errRef = useRef()
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || '/admin';
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/admin'
 
-  const [email, setEmail] = useState('');
-  const [pwd, setPwd] = useState('');
-  const [errMsg, setErrMsg] = useState('');
-
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
+  const [email, setEmail] = useState('')
+  const [pwd, setPwd] = useState('')
+  const [errMsg, setErrMsg] = useState('')
 
   useEffect(() => {
-    setErrMsg('');
-  }, [email, pwd]);
+    userRef.current.focus()
+  }, [])
+
+  useEffect(() => {
+    setErrMsg('')
+  }, [email, pwd])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       const response = await axios.post(
         LOGIN_URL,
@@ -37,26 +37,27 @@ const Login = () => {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
-      );
-      const token = response?.data?.token;
-      setAuth({ email, token });
-      localStorage.setItem('user', JSON.stringify(response.data));
-      setEmail('');
-      setPwd('');
-      navigate(from, { replace: true });
+      )
+      console.log(response?.data)
+      const token = response?.data?.token
+      setAuth({ email, token })
+      localStorage.setItem('user', JSON.stringify(response.data))
+      setEmail('')
+      setPwd('')
+      navigate(from, { replace: true })
     } catch (err) {
       if (!err?.response) {
-        setErrMsg('No Server Response');
+        setErrMsg('No Server Response')
       } else if (err.response?.status === 400) {
-        setErrMsg('Missing Username or Password');
+        setErrMsg('Missing Username or Password')
       } else if (err.response?.status === 401) {
-        setErrMsg('Unauthorized');
+        setErrMsg('Unauthorized')
       } else {
-        setErrMsg('Login Failed');
+        setErrMsg('Login Failed')
       }
-      errRef.current.focus();
+      errRef.current.focus()
     }
-  };
+  }
   return (
     <section>
       <p
@@ -96,10 +97,9 @@ const Login = () => {
             Sign In
           </button>
         </div>
-        <p className="text-xs md:text-sm pt-px">Only the owner can sign in.</p>
       </form>
     </section>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
