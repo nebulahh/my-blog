@@ -86,8 +86,9 @@ const SinglePostPage = () => {
         <div className="singlePostWrapper md:pl-0">
           <h1 className="singlePostTitle">{data?.data.title}</h1>
           <div className="singlePostInfo">
-            <span className="singlePostDate">
+            <span className="singlePostDate flex flex-col">
               {new Date(data?.data.createdAt).toDateString()}
+              By: {data?.data.posted_by.name}
             </span>
 
             {auth?.email === data?.data.posted_by.email ? (
