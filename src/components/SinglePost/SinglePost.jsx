@@ -25,7 +25,7 @@ const SinglePostPage = () => {
     try {
       const response = await axios.post(
         `/posts/${id}/comments`,
-        JSON.stringify({ username, text: comment }),
+        JSON.stringify({ username: auth?.name, text: comment }),
         {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
@@ -142,7 +142,7 @@ const SinglePostPage = () => {
                         </div>
                       </div>
                       <p className="-mt-4 text-gray-500">{comm.text}</p>
-                      {auth?.email ? (
+                      {auth.name === comm.username && (
                         <div
                           onClick={() => deleteComment(comm._id)}
                           className="w-4 cursor-pointer"
@@ -159,7 +159,7 @@ const SinglePostPage = () => {
                             </g>
                           </svg>
                         </div>
-                      ) : null}
+                      )}
                     </div>
                   </div>
                 )
