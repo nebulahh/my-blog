@@ -14,8 +14,8 @@ const Header = () => {
               Blog
             </NavLink>
             {auth.email ? (
-              <NavLink className="ml-4" to={'/admin'}>
-                Admin
+              <NavLink className="ml-4" to={'/post'}>
+                Create new Post
               </NavLink>
             ) : null}
           </nav>

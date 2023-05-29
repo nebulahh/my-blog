@@ -1,28 +1,28 @@
-import useLogout from '../hooks/useLogout';
-import { useNavigate, NavLink } from 'react-router-dom';
-import { useRef, useState } from 'react';
-import { Editor } from '@tinymce/tinymce-react';
+import useLogout from '../hooks/useLogout'
+import { useNavigate, NavLink } from 'react-router-dom'
+import { useRef, useState } from 'react'
+import { Editor } from '@tinymce/tinymce-react'
 
-import axios from '../api/axios';
-import useAuth from '../hooks/useAuth';
-const POST_URL = '/posts';
-const DRAFT_URL = '/draft';
+import axios from '../api/axios'
+import useAuth from '../hooks/useAuth'
+const POST_URL = '/posts'
+const DRAFT_URL = '/draft'
 
-const Admin = () => {
-  const [post, setPost] = useState('');
-  const [postTitle, setPostTitle] = useState('');
-  const [onSuccess, setOnSuccess] = useState('');
-  const [error, setError] = useState('');
-  const logout = useLogout();
-  const navigate = useNavigate();
-  const { auth } = useAuth();
+const MakePost = () => {
+  const [post, setPost] = useState('')
+  const [postTitle, setPostTitle] = useState('')
+  const [onSuccess, setOnSuccess] = useState('')
+  const [error, setError] = useState('')
+  const logout = useLogout()
+  const navigate = useNavigate()
+  const { auth } = useAuth()
 
-  const editorRef = useRef(null);
+  const editorRef = useRef(null)
   const publish = async (e) => {
     if (editorRef.current) {
-      console.log(editorRef.current.getContent({ format: 'text' }));
-      setPost(editorRef.current.getContent({ format: 'text' }));
-      setPostTitle(postTitle);
+      console.log(editorRef.current.getContent({ format: 'text' }))
+      setPost(editorRef.current.getContent({ format: 'text' }))
+      setPostTitle(postTitle)
       try {
         const response = await axios.post(
           POST_URL,
@@ -34,21 +34,21 @@ const Admin = () => {
             },
             withCredentials: true,
           }
-        );
-        navigate('/');
+        )
+        navigate('/')
       } catch (error) {
-        console.error(error);
-        await logout();
-        navigate('/');
+        console.error(error)
+        await logout()
+        navigate('/')
       }
     }
-  };
+  }
 
   const toDraft = async () => {
     if (editorRef.current) {
-      console.log(editorRef.current.getContent({ format: 'text' }));
-      setError('Try again');
-      setPost(editorRef.current.getContent({ format: 'text' }));
+      console.log(editorRef.current.getContent({ format: 'text' }))
+      setError('Try again')
+      setPost(editorRef.current.getContent({ format: 'text' }))
       try {
         const response = await axios.post(
           DRAFT_URL,
@@ -60,23 +60,23 @@ const Admin = () => {
             },
             withCredentials: true,
           }
-        );
-        setOnSuccess(response.data);
-        setError('');
-        editorRef.current = '';
-        navigate('/draft');
+        )
+        setOnSuccess(response.data)
+        setError('')
+        editorRef.current = ''
+        navigate('/draft')
       } catch (error) {
-        console.error(error);
-        await logout();
-        navigate('/');
+        console.error(error)
+        await logout()
+        navigate('/')
       }
     }
-  };
+  }
 
   const signOut = async () => {
-    await logout();
-    navigate('/');
-  };
+    await logout()
+    navigate('/')
+  }
 
   return (
     <>
@@ -163,6 +163,6 @@ const Admin = () => {
         </div>
       </section>
     </>
-  );
-};
-export default Admin;
+  )
+}
+export default MakePost

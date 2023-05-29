@@ -13,7 +13,7 @@ const Login = () => {
 
   const navigate = useNavigate()
   const location = useLocation()
-  const from = location.state?.from?.pathname || '/admin'
+  const from = location.state?.from?.pathname || '/post'
 
   const [email, setEmail] = useState('')
   const [pwd, setPwd] = useState('')

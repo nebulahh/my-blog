@@ -1,32 +1,32 @@
-import Home from './components/Home';
-import Register from './components/Signup/Register';
-import Login from './components/Login/Login';
-import Layout from './components/Layout';
-import SinglePost from './components/SinglePost/SinglePost';
-import Admin from './components/Admin';
-import ErrorPage from './components/Error/404';
-import RequireAuth from './components/RequireAuth';
-import Draft from './components/Draft/Draft';
-import SingleDraftPage from './components/SingleDraftPage/SingleDraftPage';
-import PersistLogin from './components/PersistLogin';
-import useAuth from './hooks/useAuth';
-import Header from './components/Header/Header';
-import { Routes, Route, NavLink } from 'react-router-dom';
-import { QueryClientProvider, QueryClient } from 'react-query';
-import { useEffect } from 'react';
+import Home from './components/Home'
+import Register from './components/Signup/Register'
+import Login from './components/Login/Login'
+import Layout from './components/Layout'
+import SinglePost from './components/SinglePost/SinglePost'
+import MakePost from './components/MakePost'
+import ErrorPage from './components/Error/404'
+import RequireAuth from './components/RequireAuth'
+import Draft from './components/Draft/Draft'
+import SingleDraftPage from './components/SingleDraftPage/SingleDraftPage'
+import PersistLogin from './components/PersistLogin'
+import useAuth from './hooks/useAuth'
+import Header from './components/Header/Header'
+import { Routes, Route, NavLink } from 'react-router-dom'
+import { QueryClientProvider, QueryClient } from 'react-query'
+import { useEffect } from 'react'
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
 function App() {
-  const { setAuth, auth } = useAuth();
+  const { setAuth, auth } = useAuth()
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem('user');
+    const loggedInUser = localStorage.getItem('user')
     if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setAuth(foundUser);
+      const foundUser = JSON.parse(loggedInUser)
+      setAuth(foundUser)
     }
-  }, []);
+  }, [])
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -41,7 +41,7 @@ function App() {
 
             <Route element={<PersistLogin />}>
               <Route element={<RequireAuth />}>
-                <Route path="/admin" element={<Admin />} />
+                <Route path="/post" element={<MakePost />} />
               </Route>
 
               <Route element={<RequireAuth />}>
@@ -58,7 +58,7 @@ function App() {
         </Routes>
       </div>
     </QueryClientProvider>
-  );
+  )
 }
 
-export default App;
+export default App
