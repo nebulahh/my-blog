@@ -21,14 +21,14 @@ const Header = () => {
           </nav>
         </div>
         <div className="col-4 d-flex justify-content-end align-items-center">
-          {!auth.email ? (
+          {auth.email ? null : (
             <nav>
               <NavLink className="mr-4" to={'/signup'}>
                 Register
               </NavLink>
               <NavLink to={'/login'}>Login</NavLink>
             </nav>
-          ) : null}
+          )}
         </div>
       </div>
     </header>
