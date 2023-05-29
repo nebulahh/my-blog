@@ -20,7 +20,6 @@ const MakePost = () => {
   const editorRef = useRef(null)
   const publish = async (e) => {
     if (editorRef.current) {
-      console.log(editorRef.current.getContent({ format: 'text' }))
       setPost(editorRef.current.getContent({ format: 'text' }))
       setPostTitle(postTitle)
       try {
@@ -46,7 +45,6 @@ const MakePost = () => {
 
   const toDraft = async () => {
     if (editorRef.current) {
-      console.log(editorRef.current.getContent({ format: 'text' }))
       setError('Try again')
       setPost(editorRef.current.getContent({ format: 'text' }))
       try {
